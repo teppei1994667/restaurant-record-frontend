@@ -21,6 +21,8 @@ export default function Home() {
             src={mainImage}
             alt={"メインイメージ"}
             className="opacity-70"
+            width={318}
+            height={321}
           />
         </Grid>
       </Grid>
