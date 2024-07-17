@@ -29,7 +29,10 @@ export default function Home() {
       <Grid container className="justify-center mt-16">
         <Grid item>
           <Link href="/">
-            <Button className="text-lg text-gray-500 h-20 w-48" variant="text">
+            <Button
+              className="text-lg text-gray-500 h-20 w-48 rounded-full"
+              variant="text"
+            >
               ログイン
             </Button>
           </Link>
@@ -37,7 +40,7 @@ export default function Home() {
         <Grid item>
           <Link href="/">
             <Button
-              className="text-lg text-gray-500 ml-20 h-20 w-48"
+              className="text-lg text-gray-500 ml-20 h-20 w-48 rounded-full"
               variant="text"
             >
               新規登録
