@@ -30,7 +30,7 @@ export default function Home() {
         <Grid item>
           <Link href="/">
             <Button
-              className="text-lg text-gray-500 h-20 w-48 rounded-full"
+              className="text-lg text-gray-500 h-20 w-48 rounded-full font-mono"
               variant="text"
             >
               ログイン
@@ -40,7 +40,7 @@ export default function Home() {
         <Grid item>
           <Link href="/">
             <Button
-              className="text-lg text-gray-500 ml-20 h-20 w-48 rounded-full"
+              className="text-lg text-gray-500 ml-20 h-20 w-48 rounded-full font-mono"
               variant="text"
             >
               新規登録
