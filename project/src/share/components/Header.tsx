@@ -62,7 +62,7 @@ export const Header = () => {
             </Grid>
             <Grid item sx={{ flexGrow: "1", marginLeft: "30px" }}>
               <Link
-                className="no-underline text-gray-500"
+                className="no-underline text-gray-500 font-mono"
                 href="/"
                 variant="h6"
                 sx={{ textDecoration: "none" }}
@@ -71,7 +71,7 @@ export const Header = () => {
               </Link>
             </Grid>
             <Grid item sx={{}}>
-              <Button className="text-gray-500">ログアウト</Button>
+              <Button className="text-gray-500 font-mono">ログアウト</Button>
             </Grid>
           </Grid>
         </Toolbar>
