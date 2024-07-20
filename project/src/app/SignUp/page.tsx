@@ -1,6 +1,6 @@
 import { Header } from "@/share/components/Header";
 import { Grid, Typography } from "@mui/material";
-import { SignUpForm } from "./components/signUpForm";
+import { SignUpForm } from "./components/SignUpForm";
 
 const SignUp = () => {
   return (
