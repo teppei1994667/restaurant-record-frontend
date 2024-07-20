@@ -38,7 +38,7 @@ export default function Home() {
           </Link>
         </Grid>
         <Grid item>
-          <Link href="/">
+          <Link href="/SignUp">
             <Button
               className="text-lg text-gray-500 ml-20 h-20 w-48 rounded-full font-mono"
               variant="text"
