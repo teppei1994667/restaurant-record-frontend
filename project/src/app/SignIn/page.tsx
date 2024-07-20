@@ -1,5 +1,5 @@
 import { Header } from "@/share/components/Header";
-import { Box, Grid, Typography } from "@mui/material";
+import { Grid, Typography } from "@mui/material";
 import { SignInForm } from "./components/signInForm";
 
 const SignIn = () => {
