@@ -3,7 +3,6 @@ import { Grid, Typography } from "@mui/material";
 import { SignInForm } from "./components/SignInForm";
 
 const SignIn = () => {
-  console.log("test");
   return (
     <>
       <Header />
