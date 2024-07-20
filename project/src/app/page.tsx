@@ -28,7 +28,7 @@ export default function Home() {
       </Grid>
       <Grid container className="justify-center mt-16">
         <Grid item>
-          <Link href="/">
+          <Link href="/SignIn">
             <Button
               className="text-lg text-gray-500 h-20 w-48 rounded-full font-mono"
               variant="text"
