@@ -3,7 +3,7 @@ import { forwardRef } from "react";
 import { Controller, useFormContext } from "react-hook-form";
 import { TextFieldProps } from "./type/ReactHookFormType";
 
-export const ControlledTextField = forwardRef<HTMLInputElement, TextFieldProps>(
+export const FormTextField = forwardRef<HTMLInputElement, TextFieldProps>(
   (props, ref) => {
     const { name, rules, helperText, ...restProps } = props;
     const form = useFormContext();
@@ -30,4 +30,4 @@ export const ControlledTextField = forwardRef<HTMLInputElement, TextFieldProps>(
   }
 );
 
-ControlledTextField.displayName = "ControlledTextField";
+FormTextField.displayName = "FormTextField";
