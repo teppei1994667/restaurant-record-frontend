@@ -21,7 +21,7 @@ export const FormTextField = forwardRef<HTMLInputElement, TextFieldProps>(
               error={!!errors.message}
               helperText={helperText}
               {...restProps}
-              size="small"
+              fullWidth
             />
           )}
         />
