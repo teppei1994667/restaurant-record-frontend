@@ -5,7 +5,7 @@ import { TextFieldProps } from "./type/ReactHookFormType";
 
 export const FormTextField = forwardRef<HTMLInputElement, TextFieldProps>(
   (props, ref) => {
-    const { name, rules, helperText, ...restProps } = props;
+    const { name, rules, helperText, sx, ...restProps } = props;
     const form = useFormContext();
 
     return (
@@ -20,8 +20,16 @@ export const FormTextField = forwardRef<HTMLInputElement, TextFieldProps>(
               ref={ref}
               error={!!errors.message}
               helperText={helperText}
-              {...restProps}
               fullWidth
+              sx={{
+                ".MuiFormHelperText-root": {
+                  color: "#cd5c5c",
+                  fontSize: "12px",
+                  fontWeight: "bold",
+                },
+                ...sx,
+              }}
+              {...restProps}
             />
           )}
         />
