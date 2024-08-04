@@ -1,13 +1,15 @@
 "use client";
 
 import { Header } from "@/share/components/Header";
+import { FormEmailTextField } from "@/share/form/FormEmailTextField";
+import { FormPasswordTextField } from "@/share/form/FormPasswordTextField";
 import { FormTextField } from "@/share/form/FormTextField";
 import { Button, Grid, Typography } from "@mui/material";
 import { FormProvider, useForm } from "react-hook-form";
 
 const FormTestPage = () => {
   const form = useForm({
-    defaultValues: { formTextField: "" },
+    defaultValues: { formTextField: "", formEmailTextField: "", formPasswordTextField: "" },
     mode: "onSubmit",
     reValidateMode: "onChange",
   });
@@ -19,6 +21,8 @@ const FormTestPage = () => {
 
   const handleSetOnClick = () => {
     form.setValue("formTextField", "デフォルト値をセット");
+    form.setValue("formEmailTextField", "default@gmail.com");
+    form.setValue("formPasswordTextField", "Password39108667");
   };
 
   const handleClearOnClick = () => {
@@ -49,6 +53,24 @@ const FormTestPage = () => {
               label="FormTextField"
               rules={FormTextFieldRules}
               helperText={form.formState.errors.formTextField?.message}
+            />
+          </Grid>
+        </Grid>
+        <Grid container className="justify-center mt-10">
+          <Grid item sx={{ width: "350px" }}>
+            <FormEmailTextField
+              name="formEmailTextField"
+              label="FormEmailTextField"
+              helperText={form.formState.errors.formEmailTextField?.message}
+            />
+          </Grid>
+        </Grid>
+        <Grid container className="justify-center mt-10">
+          <Grid item sx={{ width: "350px" }}>
+            <FormPasswordTextField
+              name="formPasswordTextField"
+              label="FormPasswordTextField"
+              helperText={form.formState.errors.formPasswordTextField?.message}
             />
           </Grid>
         </Grid>
