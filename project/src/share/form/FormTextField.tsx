@@ -22,9 +22,23 @@ export const FormTextField = forwardRef<HTMLInputElement, TextFieldProps>(
               helperText={helperText}
               fullWidth
               sx={{
-                ".MuiFormHelperText-root": {
+                "& .MuiFormLabel-root": {
+                  color: "#6B7280",
+                  opacity: 0.8,
+                },
+                "& .MuiOutlinedInput-root": {
+                  "& fieldset": {
+                    borderWidth: !!errors.formTextField?.message
+                      ? "2px"
+                      : "1px",
+                    borderColor: !!errors.formTextField?.message
+                      ? "#cd5c5c"
+                      : "#6B7280",
+                  },
+                },
+                "& .MuiFormHelperText-root": {
                   color: "#cd5c5c",
-                  fontSize: "12px",
+                  fontSize: "13px",
                   fontWeight: "bold",
                 },
                 ...sx,
