@@ -1,16 +1,19 @@
 import { Header } from "@/share/components/Header";
 import { ReactHookForm } from "./components/ReactHookForm";
 
+export type testDataType = {
+  name: string;
+  email: string;
+  password: string;
+};
+
 const FormTestPage = async () => {
   // サーバーからデータ取得
   const res = await fetch("http://app:3000/tests", {
     // オプション: キャッシュを無効にする
     cache: "no-store",
   });
-  console.log("res", res);
-  const testData = await res.json();
-  console.log("testData", testData.tests);
-
+  const testData: testDataType[] = await res.json();
   return (
     <>
       <Header />

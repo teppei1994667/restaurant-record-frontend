@@ -4,14 +4,9 @@ import { FormEmailTextField } from "@/share/form/FormEmailTextField";
 import { FormPasswordTextField } from "@/share/form/FormPasswordTextField";
 import { FormTextField } from "@/share/form/FormTextField";
 import { Button, Grid, Typography } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
-
-export type testDataType = {
-  name: string;
-  email: string;
-  password: string;
-};
+import { testDataType } from "../page";
 
 type ReactHookFormProps = {
   testData: testDataType[];
@@ -19,17 +14,34 @@ type ReactHookFormProps = {
 
 export const ReactHookForm = (props: ReactHookFormProps) => {
   const { testData } = props;
-  const [data, setData] = useState<testDataType[] | undefined>();
+  const [viewData, setViewData] = useState<testDataType[]>([]);
   const form = useForm({
     defaultValues: { formTextField: "", formEmailTextField: "", formPasswordTextField: "" },
     mode: "onSubmit",
     reValidateMode: "onChange",
   });
 
-  const handleSendOnClick = () => {
-    console.log("送信", form.getValues());
+  const handleSendOnClick = async () => {
+    const test = {
+      name: form.getValues("formTextField"),
+      email: form.getValues("formEmailTextField"),
+      password: form.getValues("formPasswordTextField"),
+    };
+
+    const res = await fetch("http://localhost:3000/tests", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name: form.getValues("formTextField"),
+        email: form.getValues("formEmailTextField"),
+        password: form.getValues("formPasswordTextField"),
+      }),
+    });
     form.reset();
-    setData(testData);
+    const newTestData: testDataType[] = await res.json();
+    setViewData(newTestData);
   };
 
   const handleSetOnClick = () => {
@@ -42,13 +54,19 @@ export const ReactHookForm = (props: ReactHookFormProps) => {
     form.reset();
   };
 
+  useEffect(() => {
+    if (testData != null) {
+      setViewData(testData);
+    }
+  }, []);
+
   const FormTextFieldRules = {
     required: { value: true, message: "必須入力です" },
     maxLength: { value: 10, message: "最大10文字の入力が必要です" },
     minLength: { value: 3, message: "最低３文字の入力が必要です" },
   };
 
-  console.log("data", data);
+  // console.log("viewData", viewData);
 
   return (
     <>
@@ -129,6 +147,19 @@ export const ReactHookForm = (props: ReactHookFormProps) => {
             </Button>
           </Grid>
         </Grid>
+        {viewData.map((data: testDataType) => (
+          <Grid container className="justify-center mt-10">
+            <Grid item>
+              <Typography>{data.name}</Typography>
+            </Grid>
+            <Grid item>
+              <Typography className="ml-5">{data.email}</Typography>
+            </Grid>
+            <Grid item>
+              <Typography className="ml-5">{data.password}</Typography>
+            </Grid>
+          </Grid>
+        ))}
       </FormProvider>
     </>
   );
