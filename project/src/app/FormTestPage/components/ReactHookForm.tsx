@@ -33,11 +33,7 @@ export const ReactHookForm = (props: ReactHookFormProps) => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({
-        name: form.getValues("formTextField"),
-        email: form.getValues("formEmailTextField"),
-        password: form.getValues("formPasswordTextField"),
-      }),
+      body: JSON.stringify(test),
     });
     form.reset();
     const newTestData: testDataType[] = await res.json();
