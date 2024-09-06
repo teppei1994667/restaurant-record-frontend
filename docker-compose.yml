@@ -7,14 +7,10 @@ services:
     tty: true
     volumes:
       - ./project:/app
-      # - node_modules:/app/node_modules
     command: sh -c "npm run dev"
-    # backend作成までコメントアウト
-    # networks:
-    #   - restaurant-sales-backend_back
-# volumes:
-#   node_modules:
-# backend作成までコメントアウト
-# networks:
-#   restaurant-sales-backend_back:
-#     external: true
+    networks:
+      - backend_back
+
+networks:
+  backend_back:
+    external: true
