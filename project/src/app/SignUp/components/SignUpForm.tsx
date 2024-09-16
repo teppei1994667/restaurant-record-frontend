@@ -3,25 +3,64 @@
 import { FormEmailTextField } from "@/share/form/FormEmailTextField";
 import { FormPasswordTextField } from "@/share/form/FormPasswordTextField";
 import { FormTextField } from "@/share/form/FormTextField";
+import Cookies from "js-cookie";
+import { signUp } from "@/share/util/authUtil";
 import { Paper, Grid, Button } from "@mui/material";
 import { FormProvider, useForm } from "react-hook-form";
+import router from "next/router";
+import { isAxiosError } from "axios";
 
 export const SignUpForm = () => {
   const signUpForm = useForm({
     defaultValues: { name: "", email: "", password: "", passwordConfirmation: "" },
-    mode: "onSubmit",
-    reValidateMode: "onChange",
+    mode: "onBlur",
   });
 
   const nameRules = {
     required: { value: true, message: "必須入力です" },
   };
 
-  // 登録ボタンテスト用関数
-  const handleSignUpOnClickTest = () => {
-    console.log("登録", signUpForm.getValues());
-    signUpForm.reset();
+  /* 
+    「登録」ボタン押下時
+  */
+  const handleSignUpOnClick = async () => {
+    try {
+      const res = await signUp(signUpForm.getValues());
+      if (res.status === 200) {
+        // アカウント作成と同時にログインさせてしまう
+        Cookies.set("_access-token", res.headers["access-token"]);
+        Cookies.set("_client", res.headers["client"]);
+        Cookies.set("_uid", res.headers["uid"]);
+
+        signUpForm.reset();
+        // router.push("/User");
+      }
+    } catch (e) {
+      if (isAxiosError(e)) {
+        // サーバーからのレスポンスがある場合
+        if (e.response) {
+          if (e.response.status === 422) {
+            alert(e.response.data.errors.fullMessages);
+          } else {
+            alert(
+              `status: ${e.response.status}\nmessage: エラーが発生しました。しばらくしてからもう一度お試しください。`,
+            );
+          }
+          // リクエストが送信されたがレスポンスがない場合
+        } else if (e.request) {
+          alert("サーバーからのレスポンスが存在しません。");
+          // それ以外のエラー
+        } else {
+          alert(e.message);
+        }
+      } else {
+        alert("不明なエラー");
+      }
+    }
   };
+
+  console.log("cookies", Cookies.get());
+
   return (
     <>
       <FormProvider {...signUpForm}>
@@ -72,7 +111,7 @@ export const SignUpForm = () => {
               <Button
                 className="text-gray-500 border-gray-500 font-mono"
                 variant="text"
-                onClick={signUpForm.handleSubmit(handleSignUpOnClickTest)}
+                onClick={signUpForm.handleSubmit(handleSignUpOnClick)}
                 sx={{
                   height: "60px",
                   width: "130px",
