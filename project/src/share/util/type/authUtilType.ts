@@ -11,3 +11,10 @@ export type SignInParams = {
   email: string;
   password: string;
 };
+
+// ユーザー認証確認
+export type checkUserAuthHeaders = {
+  "access-token": string;
+  client: string;
+  uid: string;
+};

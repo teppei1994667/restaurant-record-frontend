@@ -1,12 +1,13 @@
 "use client";
 
 import { signIn } from "@/share/util/authUtil";
-import { Button, Grid, Paper, TextField } from "@mui/material";
+import { Button, Grid, Paper } from "@mui/material";
 import { FormProvider, useForm } from "react-hook-form";
 import Cookies from "js-cookie";
 import { FormEmailTextField } from "@/share/components/form/FormEmailTextField";
 import { FormPasswordTextField } from "@/share/components/form/FormPasswordTextField";
 import { isAxiosError } from "axios";
+import { useRouter } from "next/navigation";
 
 export type SignInFormType = {
   email: string;
@@ -14,6 +15,7 @@ export type SignInFormType = {
 };
 
 export const SignInForm = () => {
+  const router = useRouter();
   const signInForm = useForm<SignInFormType>({
     defaultValues: { email: "", password: "" },
     mode: "onSubmit",
@@ -31,7 +33,8 @@ export const SignInForm = () => {
         Cookies.set("_uid", res.headers["uid"]);
 
         console.log("ログイン成功", res);
-        // router.push("/User");
+        // ユーザーページへリダイレクト
+        router.push("/User");
       }
     } catch (e) {
       console.log("エラー", e);

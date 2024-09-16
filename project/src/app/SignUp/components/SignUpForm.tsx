@@ -7,8 +7,8 @@ import Cookies from "js-cookie";
 import { signUp } from "@/share/util/authUtil";
 import { Paper, Grid, Button } from "@mui/material";
 import { FormProvider, useForm } from "react-hook-form";
-import router from "next/router";
 import { isAxiosError } from "axios";
+import { useRouter } from "next/navigation";
 
 export type SignUpFormType = {
   name: string;
@@ -18,9 +18,10 @@ export type SignUpFormType = {
 };
 
 export const SignUpForm = () => {
+  const router = useRouter();
   const signUpForm = useForm<SignUpFormType>({
     defaultValues: { name: "", email: "", password: "", passwordConfirmation: "" },
-    mode: "onBlur",
+    mode: "onSubmit",
   });
 
   const nameRules = {
@@ -39,8 +40,8 @@ export const SignUpForm = () => {
         Cookies.set("_client", res.headers["client"]);
         Cookies.set("_uid", res.headers["uid"]);
 
-        signUpForm.reset();
-        // router.push("/User");
+        // userページへリダイレクト
+        router.push("/User");
       }
     } catch (e) {
       if (isAxiosError(e)) {
