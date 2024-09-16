@@ -49,6 +49,7 @@ export const SignUpForm = () => {
           if (e.response.status === 422) {
             alert(e.response.data.errors.fullMessages);
           } else {
+            // 500 Internal Server Errorを想定
             alert(
               `status: ${e.response.status}\nmessage: エラーが発生しました。しばらくしてからもう一度お試しください。`,
             );
