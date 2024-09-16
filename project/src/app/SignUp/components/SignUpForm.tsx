@@ -1,8 +1,8 @@
 "use client";
 
-import { FormEmailTextField } from "@/share/form/FormEmailTextField";
-import { FormPasswordTextField } from "@/share/form/FormPasswordTextField";
-import { FormTextField } from "@/share/form/FormTextField";
+import { FormEmailTextField } from "@/share/components/form/FormEmailTextField";
+import { FormPasswordTextField } from "@/share/components/form/FormPasswordTextField";
+import { FormTextField } from "@/share/components/form/FormTextField";
 import Cookies from "js-cookie";
 import { signUp } from "@/share/util/authUtil";
 import { Paper, Grid, Button } from "@mui/material";

@@ -1,8 +1,8 @@
 "use client";
 
-import { FormEmailTextField } from "@/share/form/FormEmailTextField";
-import { FormPasswordTextField } from "@/share/form/FormPasswordTextField";
-import { FormTextField } from "@/share/form/FormTextField";
+import { FormEmailTextField } from "@/share/components/form/FormEmailTextField";
+import { FormPasswordTextField } from "@/share/components/form/FormPasswordTextField";
+import { FormTextField } from "@/share/components/form/FormTextField";
 import { Button, Grid, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
