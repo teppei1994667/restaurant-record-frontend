@@ -10,8 +10,15 @@ import { FormProvider, useForm } from "react-hook-form";
 import router from "next/router";
 import { isAxiosError } from "axios";
 
+export type SignUpFormType = {
+  name: string;
+  email: string;
+  password: string;
+  passwordConfirmation: string;
+};
+
 export const SignUpForm = () => {
-  const signUpForm = useForm({
+  const signUpForm = useForm<SignUpFormType>({
     defaultValues: { name: "", email: "", password: "", passwordConfirmation: "" },
     mode: "onBlur",
   });
