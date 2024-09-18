@@ -15,7 +15,7 @@ export const signIn = (params: SignInParams) => {
 // ユーザー認証確認
 export const checkUserAuth = async (headers: checkUserAuthHeaders) => {
   try {
-    const response = await convertAuthUserAxioDocker.get("/", {
+    const response = await convertAuthUserAxioDocker.get("/authenticated", {
       headers: {
         "access-token": headers["access-token"],
         client: headers.client,
