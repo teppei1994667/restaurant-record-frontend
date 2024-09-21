@@ -1,5 +1,6 @@
 import { convertAuthUserAxioDocker, convertAuthUserAxios } from "./convertAxiosUtil";
 import { checkUserAuthHeaders, SignInParams, SignUpParams } from "./type/authUtilType";
+import Cookies from "js-cookie";
 
 // サインアップ
 export const signUp = (params: SignUpParams) => {
@@ -9,6 +10,17 @@ export const signUp = (params: SignUpParams) => {
 // サインイン
 export const signIn = (params: SignInParams) => {
   return convertAuthUserAxios.post("sign_in", params);
+};
+
+// サインアウト
+export const signOut = () => {
+  return convertAuthUserAxios.delete("sign_out", {
+    headers: {
+      "access-token": Cookies.get("_access-token"),
+      client: Cookies.get("_client"),
+      uid: Cookies.get("_uid"),
+    },
+  });
 };
 
 // ユーザー認証確認
