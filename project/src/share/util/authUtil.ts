@@ -1,4 +1,3 @@
-import { AxiosError } from "axios";
 import { convertAuthUserAxioDocker, convertAuthUserAxios } from "./convertAxiosUtil";
 import { checkUserAuthHeaders, SignInParams, SignUpParams } from "./type/authUtilType";
 
@@ -15,7 +14,7 @@ export const signIn = (params: SignInParams) => {
 // ユーザー認証確認
 export const checkUserAuth = async (headers: checkUserAuthHeaders) => {
   try {
-    const response = await convertAuthUserAxioDocker.get("/authenticated", {
+    const response = await convertAuthUserAxioDocker.get("/show", {
       headers: {
         "access-token": headers["access-token"],
         client: headers.client,
