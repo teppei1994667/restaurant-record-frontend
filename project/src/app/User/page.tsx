@@ -6,20 +6,19 @@ import { redirect } from "next/navigation";
 
 const User = async () => {
   const cookieStore = cookies();
+  const sendUrl = "/show";
   const authHeaders = {
     "access-token": cookieStore.get("_access-token")?.value ?? "",
     client: cookieStore.get("_client")?.value ?? "",
     uid: cookieStore.get("_uid")?.value ?? "",
   };
 
-  const auth = await checkUserAuth(authHeaders);
-  console.log("auth", auth);
+  const auth = await checkUserAuth(authHeaders, sendUrl);
+  console.log("User auth", auth);
 
   if (auth == null) {
     redirect("/SignIn");
   }
-
-  console.log("cookies", cookieStore.getAll());
 
   return (
     <>

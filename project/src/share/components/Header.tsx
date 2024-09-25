@@ -61,6 +61,8 @@ export const Header = () => {
     }
   };
 
+  console.log("Headers cookies", Cookies.get());
+
   const drawerList = (
     <Box sx={{ width: "350px", paddingTop: "25px" }}>
       <ListItemButton className="text-center justify-center" onClick={handleDrawerOpenClose}>

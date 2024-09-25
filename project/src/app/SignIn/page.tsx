@@ -1,8 +1,26 @@
 import { Header } from "@/share/components/Header";
 import { Grid, Typography } from "@mui/material";
 import { SignInForm } from "./components/SignInForm";
+import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
+import { checkUserAuth } from "@/share/util/authUtil";
 
-const SignIn = () => {
+const SignIn = async () => {
+  const cookieStore = cookies();
+  const sendUrl = "/authenticated";
+  const authHeaders = {
+    "access-token": cookieStore.get("_access-token")?.value ?? "",
+    client: cookieStore.get("_client")?.value ?? "",
+    uid: cookieStore.get("_uid")?.value ?? "",
+  };
+
+  const auth = await checkUserAuth(authHeaders, sendUrl);
+  console.log("SignIn auth", auth);
+
+  if (auth.isLogin) {
+    redirect("/User");
+  }
+
   return (
     <>
       <Header />

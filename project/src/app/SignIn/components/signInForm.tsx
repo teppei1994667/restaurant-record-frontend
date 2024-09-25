@@ -62,8 +62,6 @@ export const SignInForm = () => {
     }
   };
 
-  console.log("cookies", Cookies.get());
-
   return (
     <>
       <FormProvider {...signInForm}>

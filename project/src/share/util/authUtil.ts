@@ -24,9 +24,9 @@ export const signOut = () => {
 };
 
 // ユーザー認証確認
-export const checkUserAuth = async (headers: checkUserAuthHeaders) => {
+export const checkUserAuth = async (headers: checkUserAuthHeaders, sendUrl: string) => {
   try {
-    const response = await convertAuthUserAxioDocker.get("/show", {
+    const response = await convertAuthUserAxioDocker.get(sendUrl, {
       headers: {
         "access-token": headers["access-token"],
         client: headers.client,

@@ -68,8 +68,6 @@ export const SignUpForm = () => {
     }
   };
 
-  console.log("cookies", Cookies.get());
-
   return (
     <>
       <FormProvider {...signUpForm}>
