@@ -2,23 +2,25 @@ import { Header } from "@/share/components/Header";
 import { Grid, Typography } from "@mui/material";
 import { SignUpForm } from "./components/SignUpForm";
 import { redirect } from "next/navigation";
-import { checkUserAuth } from "@/share/util/authUtil";
+import { checkAuthenticated } from "@/share/util/authUtil";
 import { cookies } from "next/headers";
+import { AxiosResponse } from "axios";
+import { Authenticated } from "@/share/util/type/authUtilType";
 
 const SignUp = async () => {
   const cookieStore = cookies();
-  const sendUrl = "/authenticated";
   const authHeaders = {
     "access-token": cookieStore.get("_access-token")?.value ?? "",
     client: cookieStore.get("_client")?.value ?? "",
     uid: cookieStore.get("_uid")?.value ?? "",
   };
 
-  const auth = await checkUserAuth(authHeaders, sendUrl);
-  console.log("SignUp auth", auth);
+  const res: AxiosResponse<Authenticated> | null = await checkAuthenticated(authHeaders);
 
-  if (auth.isLogin) {
-    redirect("/User");
+  if (res != null) {
+    if (res.data.isLogin) {
+      redirect("/User");
+    }
   }
 
   return (

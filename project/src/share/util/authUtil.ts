@@ -1,5 +1,12 @@
+import { AxiosResponse, isAxiosError } from "axios";
 import { convertAuthUserAxioDocker, convertAuthUserAxios } from "./convertAxiosUtil";
-import { checkUserAuthHeaders, SignInParams, SignUpParams } from "./type/authUtilType";
+import {
+  Authenticated,
+  AuthUserShow,
+  CheckUserAuthHeaders,
+  SignInParams,
+  SignUpParams,
+} from "./type/authUtilType";
 import Cookies from "js-cookie";
 
 // サインアップ
@@ -24,18 +31,50 @@ export const signOut = () => {
 };
 
 // ユーザー認証確認
-export const checkUserAuth = async (headers: checkUserAuthHeaders, sendUrl: string) => {
+export const checkAuthenticated = async (
+  headers: CheckUserAuthHeaders,
+): Promise<AxiosResponse<Authenticated> | null> => {
   try {
-    const response = await convertAuthUserAxioDocker.get(sendUrl, {
+    const response: AxiosResponse<Authenticated> = await convertAuthUserAxioDocker.get(
+      "/authenticated",
+      {
+        headers: {
+          "access-token": headers["access-token"],
+          client: headers.client,
+          uid: headers.uid,
+        },
+      },
+    );
+    console.log("response", response);
+    return response;
+  } catch (e) {
+    if (isAxiosError(e) && e.response) {
+      console.log("e.response", e.response);
+      return e.response;
+    }
+    return null;
+  }
+};
+
+// ユーザー情報取得
+export const getAuthUser = async (
+  headers: CheckUserAuthHeaders,
+): Promise<AxiosResponse<AuthUserShow> | null> => {
+  try {
+    const response: AxiosResponse<AuthUserShow> = await convertAuthUserAxioDocker.get("/show", {
       headers: {
         "access-token": headers["access-token"],
         client: headers.client,
         uid: headers.uid,
       },
     });
-
-    return response.data;
+    console.log("response", response);
+    return response;
   } catch (e) {
+    if (isAxiosError(e) && e.response) {
+      console.log("e.response", e.response);
+      return e.response;
+    }
     return null;
   }
 };
