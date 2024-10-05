@@ -1,3 +1,5 @@
+import { User } from "@/app/User/type/UserType";
+
 // サインアップ
 export type SignUpParams = {
   name: string;
@@ -26,13 +28,5 @@ export type Authenticated = {
 
 // ユーザーデータ取得
 export type AuthUserShow = {
-  id: number;
-  provider: string;
-  uid: string;
-  allowPasswordChange: boolean;
-  name: string;
-  email: string;
-  createdAt: string;
-  updatedAt: string;
-  errors: string[];
+  user: User;
 };

@@ -5,6 +5,9 @@ import { AxiosResponse } from "axios";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { getAuthUser } from "@/share/util/authUtil";
+import { PageTitle } from "../../share/components/PageTitle";
+import { UserInfo } from "./components/UserInfo";
+import { StoreList } from "./components/StoreList";
 
 const User = async () => {
   const cookieStore = cookies();
@@ -25,20 +28,9 @@ const User = async () => {
   return (
     <>
       <Header />
-      <Grid container className="justify-center mt-10">
-        <Grid item>
-          <Typography className="text-gray-500 font-mono" variant="h4">
-            テスト店
-          </Typography>
-        </Grid>
-      </Grid>
-      <Grid container className="justify-center mt-10">
-        <Grid item>
-          <Typography className="text-gray-500 font-mono" variant="h6">
-            店舗一覧
-          </Typography>
-        </Grid>
-      </Grid>
+      <PageTitle name={res?.data.user.name} />
+      <StoreList />
+      <UserInfo />
     </>
   );
 };
