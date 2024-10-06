@@ -32,12 +32,10 @@ export const SignInForm = () => {
         Cookies.set("_client", res.headers["client"]);
         Cookies.set("_uid", res.headers["uid"]);
 
-        console.log("ログイン成功", res);
         // ユーザーページへリダイレクト
         router.push("/User");
       }
     } catch (e) {
-      console.log("エラー", e);
       if (isAxiosError(e)) {
         // サーバーからのレスポンスがある場合
         if (e.response) {

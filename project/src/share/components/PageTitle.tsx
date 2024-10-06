@@ -7,7 +7,6 @@ type TitleProps = {
 
 export const PageTitle = (props: TitleProps) => {
   const { name } = props;
-  console.log("title", name);
   return (
     <Grid container className="justify-center mt-10">
       <Grid item>

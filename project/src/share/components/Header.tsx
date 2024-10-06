@@ -39,7 +39,6 @@ export const Header = () => {
   const handleSignOutOnClick = async () => {
     try {
       const res = await signOut();
-      console.log("サインアウト res", res);
       if (res.status === 200) {
         // ブラウザのcookiesに保存しているトークンを削除
         Cookies.remove("_access-token");
@@ -50,7 +49,6 @@ export const Header = () => {
         router.push("/");
       }
     } catch (e) {
-      console.log("エラー", e);
       if (isAxiosError(e)) {
         if (e.response?.status === 404) {
           alert(e.response.data.errors);

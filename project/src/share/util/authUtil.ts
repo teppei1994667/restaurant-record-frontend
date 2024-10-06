@@ -45,11 +45,9 @@ export const checkAuthenticated = async (
         },
       },
     );
-    console.log("response", response);
     return response;
   } catch (e) {
     if (isAxiosError(e) && e.response) {
-      console.log("e.response", e.response);
       return e.response;
     }
     return null;
@@ -68,11 +66,9 @@ export const getAuthUser = async (
         uid: headers.uid,
       },
     });
-    console.log("response", response);
     return response;
   } catch (e) {
     if (isAxiosError(e) && e.response) {
-      console.log("e.response", e.response);
       return e.response;
     }
     return null;
