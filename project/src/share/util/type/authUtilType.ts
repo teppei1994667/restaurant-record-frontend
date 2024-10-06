@@ -1,4 +1,4 @@
-import { User } from "@/app/User/type/UserType";
+import { UserModel } from "@/app/User/type/UserType";
 
 // サインアップ
 export type SignUpParams = {
@@ -28,5 +28,5 @@ export type Authenticated = {
 
 // ユーザーデータ取得
 export type AuthUserShow = {
-  user: User;
+  user: UserModel;
 };

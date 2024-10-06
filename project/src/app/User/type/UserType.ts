@@ -1,4 +1,4 @@
-export type User = {
+export type UserModel = {
   id: number;
   provider: string;
   uid: string;
@@ -7,5 +7,4 @@ export type User = {
   email: string;
   createdAt: string;
   updatedAt: string;
-  errors?: string[];
 };
