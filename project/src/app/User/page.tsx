@@ -1,4 +1,4 @@
-import { Header } from "@/share/components/Header";
+import { HeaderContainer } from "@/share/components/HeaderContainer";
 import { AuthUserShow } from "@/share/util/type/authUtilType";
 import { Grid, Typography } from "@mui/material";
 import { AxiosResponse } from "axios";
@@ -27,7 +27,7 @@ const User = async () => {
 
   return (
     <>
-      <Header />
+      <HeaderContainer />
       <PageTitle name={res?.data.user.name} />
       <StoreList />
       <UserInfo />

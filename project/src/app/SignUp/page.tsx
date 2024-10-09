@@ -1,11 +1,11 @@
 import { Header } from "@/share/components/Header";
 import { Grid, Typography } from "@mui/material";
-import { SignUpForm } from "./components/SignUpForm";
 import { redirect } from "next/navigation";
 import { checkAuthenticated } from "@/share/util/authUtil";
 import { cookies } from "next/headers";
 import { AxiosResponse } from "axios";
 import { Authenticated } from "@/share/util/type/authUtilType";
+import { SignUpFormContainer } from "./components/SignUpFormContainer";
 
 const SignUp = async () => {
   const cookieStore = cookies();
@@ -35,7 +35,7 @@ const SignUp = async () => {
       </Grid>
       <Grid container className="justify-center mt-10">
         <Grid item>
-          <SignUpForm />
+          <SignUpFormContainer />
         </Grid>
       </Grid>
     </>
