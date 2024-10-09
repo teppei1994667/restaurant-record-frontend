@@ -1,4 +1,4 @@
-import { Header } from "@/share/components/Header";
+import { HeaderContainer } from "@/share/components/HeaderContainer";
 import { Grid, Typography } from "@mui/material";
 import { redirect } from "next/navigation";
 import { checkAuthenticated } from "@/share/util/authUtil";
@@ -25,7 +25,7 @@ const SignUp = async () => {
 
   return (
     <>
-      <Header />
+      <HeaderContainer />
       <Grid container className="justify-center mt-10">
         <Grid item>
           <Typography className="text-gray-500 font-mono" variant="h4">

@@ -1,4 +1,4 @@
-import { Header } from "@/share/components/Header";
+import { HeaderContainer } from "@/share/components/HeaderContainer";
 import { ReactHookForm } from "./components/ReactHookForm";
 
 export type testDataType = {
@@ -16,7 +16,7 @@ const FormTestPage = async () => {
   const testData: testDataType[] = await res.json();
   return (
     <>
-      <Header />
+      <HeaderContainer />
       <ReactHookForm testData={testData} />
     </>
   );
