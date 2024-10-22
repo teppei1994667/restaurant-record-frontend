@@ -8,34 +8,27 @@ import {
   Grid,
   IconButton,
   Link,
-  List,
-  ListItem,
   ListItemButton,
-  ListItemText,
   Toolbar,
   Typography,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-import { useCallback, useState } from "react";
+import Cookies from "js-cookie";
 
-export const Header = () => {
-  const [isDrawerOpend, setIsDrawerOpend] = useState(false);
+type HeaderPresentationProps = {
+  isDrawerOpend: boolean;
+  handleDrawerOpenClose: () => void;
+  handleSignOutOnClick: () => void;
+};
 
-  // Drawerの開閉イベント
-  const handleDrawerOpenClose = useCallback(() => {
-    if (isDrawerOpend) {
-      setIsDrawerOpend(false);
-    } else {
-      setIsDrawerOpend(true);
-    }
-  }, [isDrawerOpend]);
+export const HeaderPresentation = (props: HeaderPresentationProps) => {
+  console.log("Headers cookies", Cookies.get());
+
+  const { isDrawerOpend, handleDrawerOpenClose, handleSignOutOnClick } = props;
 
   const drawerList = (
     <Box sx={{ width: "350px", paddingTop: "25px" }}>
-      <ListItemButton
-        className="text-center justify-center"
-        onClick={handleDrawerOpenClose}
-      >
+      <ListItemButton className="text-center justify-center" onClick={handleDrawerOpenClose}>
         <Typography variant="h6" className="text-gray-500">
           テスト
         </Typography>
@@ -71,7 +64,9 @@ export const Header = () => {
               </Link>
             </Grid>
             <Grid item sx={{}}>
-              <Button className="text-gray-500 font-mono">ログアウト</Button>
+              <Button className="text-gray-500 font-mono" onClick={handleSignOutOnClick}>
+                ログアウト
+              </Button>
             </Grid>
           </Grid>
         </Toolbar>

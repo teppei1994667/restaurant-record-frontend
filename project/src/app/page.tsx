@@ -1,4 +1,4 @@
-import { Header } from "@/share/components/Header";
+import { HeaderContainer } from "@/share/components/HeaderContainer";
 import { Button, Grid, Typography } from "@mui/material";
 import Image from "next/image";
 import mainImage from "../public/restaurant-record-main-img.png";
@@ -7,7 +7,7 @@ import Link from "next/link";
 export default function Home() {
   return (
     <>
-      <Header />
+      <HeaderContainer />
       <Grid container className="justify-center pt-10">
         <Grid item>
           <Typography className="text-gray-500 font-mono" variant="h3">
