@@ -13,18 +13,16 @@ import {
   Typography,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-import Cookies from "js-cookie";
 
 type HeaderPresentationProps = {
+  isLoggedIn: boolean;
   isDrawerOpend: boolean;
   handleDrawerOpenClose: () => void;
   handleSignOutOnClick: () => void;
 };
 
 export const HeaderPresentation = (props: HeaderPresentationProps) => {
-  console.log("Headers cookies", Cookies.get());
-
-  const { isDrawerOpend, handleDrawerOpenClose, handleSignOutOnClick } = props;
+  const { isLoggedIn, isDrawerOpend, handleDrawerOpenClose, handleSignOutOnClick } = props;
 
   const drawerList = (
     <Box sx={{ width: "350px", paddingTop: "25px" }}>
@@ -63,11 +61,15 @@ export const HeaderPresentation = (props: HeaderPresentationProps) => {
                 Restaurant Record
               </Link>
             </Grid>
-            <Grid item sx={{}}>
-              <Button className="text-gray-500 font-mono" onClick={handleSignOutOnClick}>
-                ログアウト
-              </Button>
-            </Grid>
+            {isLoggedIn ? (
+              <Grid item>
+                <Button className="text-gray-500 font-mono" onClick={handleSignOutOnClick}>
+                  ログアウト
+                </Button>
+              </Grid>
+            ) : (
+              <></>
+            )}
           </Grid>
         </Toolbar>
       </AppBar>

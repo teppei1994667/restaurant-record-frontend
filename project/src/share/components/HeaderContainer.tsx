@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { signOut } from "../util/authUtil";
 import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
@@ -8,7 +8,9 @@ import { isAxiosError } from "axios";
 import { HeaderPresentation } from "./HeaderPresentation";
 
 export const HeaderContainer = () => {
-  const [isDrawerOpend, setIsDrawerOpend] = useState(false);
+  console.log("Headers cookies", Cookies.get());
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+  const [isDrawerOpend, setIsDrawerOpend] = useState<boolean>(false);
 
   const router = useRouter();
 
@@ -47,9 +49,18 @@ export const HeaderContainer = () => {
     }
   };
 
+  useEffect(() => {
+    if (Cookies.get("_access-token") && Cookies.get("_client") && Cookies.get("_uid")) {
+      setIsLoggedIn(true);
+    } else {
+      setIsLoggedIn(false);
+    }
+  }, []);
+
   return (
     <>
       <HeaderPresentation
+        isLoggedIn={isLoggedIn}
         isDrawerOpend={isDrawerOpend}
         handleDrawerOpenClose={handleDrawerOpenClose}
         handleSignOutOnClick={handleSignOutOnClick}
